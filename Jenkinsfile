@@ -21,6 +21,20 @@ pipeline {
         sh "./mvnw clean test package"
       }
     }
+stage("Creds Check") {
+  steps {
+    echo "Checking sonar + DockerHub + nexus credential visibility..."
+    withCredentials([string(credentialsId: 'sonar', variable: 'SONAR_TOKEN')]) {
+      sh 'echo "SONAR credential OK"'
+    }
+    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'U', passwordVariable: 'P')]) {
+      sh 'echo "DockerHub credential OK"'
+    }
+    withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'U', passwordVariable: 'P')]) {
+      sh 'echo "Nexus credential OK"'
+    }
+  }
+}
 
     stage("SonarQube Analysis") {
       steps {
