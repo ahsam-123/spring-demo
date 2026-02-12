@@ -43,7 +43,7 @@ stage("Creds Check") {
           ./mvnw sonar:sonar \
             -Dsonar.projectKey=spring-demo \
             -Dsonar.host.url=${SONAR_HOST} \
-            -Dsonar.login=${SONAR_TOKEN}
+            -Dsonar.token=${SONAR_TOKEN}
           """
         }
       }
