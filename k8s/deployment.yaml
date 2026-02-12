@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-demo
+  template:
+    metadata:
+      labels:
+        app: spring-demo
+    spec:
+      containers:
+      - name: spring-demo
+        image: DOCKER_USER/spring-demo:TAG
+        ports:
+        - containerPort: 8080
