@@ -24,7 +24,7 @@ pipeline {
 stage("Creds Check") {
   steps {
     echo "Checking sonar + DockerHub + nexus credential visibility..."
-    withCredentials([string(credentialsId: 'sonar', variable: 'SONAR_TOKEN')]) {
+    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
       sh 'echo "SONAR credential OK"'
     }
     withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'U', passwordVariable: 'P')]) {
